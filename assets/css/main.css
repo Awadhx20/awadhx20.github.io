@@ -29,6 +29,640 @@
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
 
+
+/* Tech Orb Container */
+.tech-orb-container {
+  position: relative;
+  height: 500px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Orb Center */
+.orb-center {
+  position: absolute;
+  z-index: 10;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.03);
+  }
+}
+
+.orb-core {
+  width: 140px;
+  height: 140px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 42px;
+  box-shadow: 
+    0 20px 50px rgba(106, 17, 203, 0.4),
+    0 0 0 15px rgba(106, 17, 203, 0.1),
+    inset 0 0 30px rgba(255, 255, 255, 0.3);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.orb-core:hover {
+  transform: scale(1.05);
+  box-shadow: 
+    0 25px 60px rgba(106, 17, 203, 0.5),
+    0 0 0 20px rgba(106, 17, 203, 0.15),
+    inset 0 0 40px rgba(255, 255, 255, 0.4);
+}
+
+.orb-core::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  border-radius: 50%;
+  z-index: -1;
+  opacity: 0.2;
+  filter: blur(15px);
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+.orb-core span {
+  font-size: 16px;
+  margin-top: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Orb Rings */
+.orb-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 2px dashed rgba(106, 17, 203, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-1 {
+  width: 280px;
+  height: 280px;
+  animation: rotate-ring 40s linear infinite;
+}
+
+.ring-2 {
+  width: 380px;
+  height: 380px;
+  animation: rotate-ring 60s linear infinite reverse;
+  border-style: dotted;
+}
+
+@keyframes rotate-ring {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ring-item {
+  position: absolute;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.ring-item:hover {
+  transform: scale(1.1);
+}
+
+/* Positioning for ring-1 */
+.ring-1 .ring-item:nth-child(1) {
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ring-1 .ring-item:nth-child(2) {
+  right: -50px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.ring-1 .ring-item:nth-child(3) {
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* Positioning for ring-2 */
+.ring-2 .ring-item:nth-child(1) {
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ring-2 .ring-item:nth-child(2) {
+  top: 50%;
+  left: -50px;
+  transform: translateY(-50%);
+}
+
+.ring-2 .ring-item:nth-child(3) {
+  bottom: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.ring-2 .ring-item:nth-child(4) {
+  top: 50%;
+  right: -50px;
+  transform: translateY(-50%);
+}
+
+.ring-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  font-size: 28px;
+  color: #6a11cb;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.1),
+    0 0 0 4px rgba(106, 17, 203, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ring-icon::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(106, 17, 203, 0.1) 0%, rgba(37, 117, 252, 0.1) 100%);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.ring-item:hover .ring-icon {
+  transform: rotate(15deg);
+  box-shadow: 
+    0 15px 40px rgba(106, 17, 203, 0.2),
+    0 0 0 6px rgba(106, 17, 203, 0.15);
+  color: #2575fc;
+}
+
+.ring-item:hover .ring-icon::before {
+  opacity: 1;
+}
+
+/* Special colors for specific icons */
+.ring-icon .bi-microsoft { color: #00a4ef; }
+.ring-icon .bi-database { color: #FF9800; }
+.ring-icon .bi-cloud { color: #0078d4; }
+.ring-icon .bi-server { color: #4CAF50; }
+.ring-icon .bi-box { color: #2496ed; }
+.ring-icon .bi-git { color: #F05032; }
+.ring-icon .bi-shield-check { color: #4CAF50; }
+
+.ring-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  padding: 6px 12px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.ring-item:hover .ring-label {
+  background: #6a11cb;
+  color: white;
+  transform: translateY(3px);
+  box-shadow: 0 8px 20px rgba(106, 17, 203, 0.3);
+}
+
+/* Floating Particles */
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  animation: particle-float 3s infinite ease-in-out;
+  opacity: 0.7;
+}
+
+.particle:nth-child(1) {
+  top: 15%;
+  left: 25%;
+  animation-delay: 0s;
+  background: #6a11cb;
+}
+
+.particle:nth-child(2) {
+  top: 65%;
+  left: 15%;
+  animation-delay: 0.5s;
+  background: #2575fc;
+}
+
+.particle:nth-child(3) {
+  top: 35%;
+  right: 20%;
+  animation-delay: 1s;
+  background: #6a11cb;
+}
+
+.particle:nth-child(4) {
+  bottom: 25%;
+  left: 35%;
+  animation-delay: 1.5s;
+  background: #2575fc;
+}
+
+.particle:nth-child(5) {
+  bottom: 15%;
+  right: 25%;
+  animation-delay: 2s;
+  background: #6a11cb;
+}
+
+@keyframes particle-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0.7;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px) scale(1.1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-10px) translateX(-10px) scale(1.2);
+    opacity: 0.9;
+  }
+  75% {
+    transform: translateY(10px) translateX(10px) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Stats Display */
+.orb-stats {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  z-index: 5;
+}
+
+.stat-bubble {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px 30px;
+  border-radius: 25px;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.5);
+  text-align: center;
+  min-width: 120px;
+  backdrop-filter: blur(10px);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-bubble::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #6a11cb 0%, #2575fc 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.stat-bubble:hover {
+  transform: translateY(-10px);
+  box-shadow: 
+    0 25px 50px rgba(106, 17, 203, 0.15),
+    0 0 0 2px rgba(106, 17, 203, 0.1);
+}
+
+.stat-bubble:hover::before {
+  opacity: 1;
+}
+
+.stat-value {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: #6a11cb;
+  margin-bottom: 8px;
+  background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 4px rgba(106, 17, 203, 0.1);
+}
+
+.stat-label {
+  font-size: 13px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+}
+
+/* Orb Background Effects */
+.tech-orb-container::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 450px;
+  height: 450px;
+  background: radial-gradient(circle, rgba(106, 17, 203, 0.1) 0%, rgba(37, 117, 252, 0.05) 50%, transparent 70%);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Connection Lines Animation */
+.orb-ring::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, transparent 60%, rgba(106, 17, 203, 0.05) 100%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .tech-orb-container {
+    height: 450px;
+  }
+  
+  .ring-1 {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .ring-2 {
+    width: 340px;
+    height: 340px;
+  }
+  
+  .orb-core {
+    width: 120px;
+    height: 120px;
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 992px) {
+  .tech-orb-container {
+    height: 400px;
+  }
+  
+  .ring-1 {
+    width: 220px;
+    height: 220px;
+  }
+  
+  .ring-2 {
+    width: 300px;
+    height: 300px;
+  }
+  
+  .orb-core {
+    width: 100px;
+    height: 100px;
+    font-size: 32px;
+  }
+  
+  .ring-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .ring-label {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+  
+  .stat-bubble {
+    padding: 15px 20px;
+    min-width: 100px;
+  }
+  
+  .stat-value {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-orb-container {
+    height: 350px;
+  }
+  
+  .ring-1 {
+    width: 180px;
+    height: 180px;
+  }
+  
+  .ring-2 {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .orb-core {
+    width: 80px;
+    height: 80px;
+    font-size: 28px;
+  }
+  
+  .orb-core span {
+    font-size: 14px;
+  }
+  
+  .ring-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+  }
+  
+  .ring-label {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+  
+  .orb-stats {
+    gap: 15px;
+  }
+  
+  .stat-bubble {
+    padding: 12px 16px;
+    min-width: 80px;
+  }
+  
+  .stat-value {
+    font-size: 22px;
+  }
+  
+  .stat-label {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 576px) {
+  .tech-orb-container {
+    height: 300px;
+  }
+  
+  .ring-1 {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .ring-2 {
+    width: 210px;
+    height: 210px;
+  }
+  
+  .orb-core {
+    width: 70px;
+    height: 70px;
+    font-size: 24px;
+  }
+  
+  .orb-core span {
+    font-size: 12px;
+  }
+  
+  .ring-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+  
+  .orb-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    bottom: 10px;
+  }
+  
+  .stat-bubble {
+    width: 120px;
+  }
+}
+
+/* Loading Animation */
+.tech-orb-container.loading .orb-core {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.tech-orb-container.loading .ring-1,
+.tech-orb-container.loading .ring-2 {
+  animation-play-state: paused;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .orb-core {
+    box-shadow: 
+      0 20px 50px rgba(106, 17, 203, 0.3),
+      0 0 0 15px rgba(106, 17, 203, 0.2),
+      inset 0 0 30px rgba(255, 255, 255, 0.1);
+  }
+  
+  .ring-icon {
+    background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+    color: #cbd5e0;
+  }
+  
+  .ring-label {
+    background: rgba(45, 55, 72, 0.9);
+    color: #cbd5e0;
+  }
+  
+  .stat-bubble {
+    background: rgba(45, 55, 72, 0.9);
+    box-shadow: 
+      0 15px 35px rgba(0, 0, 0, 0.2),
+      0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+  
+  .stat-label {
+    color: #a0aec0;
+  }
+}
+
+
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #314862;  /* The default color of the main navmenu links */
@@ -880,11 +1514,9 @@ section,
   box-shadow: 0 10px 30px color-mix(in srgb, var(--accent-color), transparent 80%);
 }
 
-.about .profile-image-wrapper .profile-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+/* .about .profile-image-wrapper .profile-image img {
+ 
+} */
 
 @media (max-width: 768px) {
   .about .profile-image-wrapper .profile-image {
@@ -901,7 +1533,7 @@ section,
   max-width: 200px;
   height: auto;
   margin-bottom: 15px;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .about .profile-image-wrapper .signature-section .quote {
